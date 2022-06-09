@@ -1,0 +1,18 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  main:
+    hostname: docker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    stdin_open: true
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=${EXT_DEVICES}
+      - EXT_USER=${EXT_USER}
+      - EXT_UID=${EXT_UID}
+      - EXT_GID=${EXT_GID}
+    volumes:
+      - ../.docker_home:/home/${USER}
+      - ..:/home/${USER}/code

@@ -1,0 +1,8 @@
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 1AF1527DE64CB8D9; \
+    add-apt-repository "deb [arch=amd64] http://dist.carla.org/carla focal main"
+
+RUN apt-get update; \
+    apt-get install -y carla-simulator libomp-dev xdg-user-dirs; \
+    rm -rf /var/lib/apt/lists/*
+
+ENV PATH $PATH:/opt/carla-simulator
